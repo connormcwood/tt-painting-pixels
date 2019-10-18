@@ -14,6 +14,10 @@ class Cell {
         return this._colour.getColour()
     }
 
+    getColour() {
+        return this._colour
+    }
+
     setColour(colour) {
         this._colour = colour
     }

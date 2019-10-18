@@ -13,7 +13,7 @@ class Grid {
         this._grid = grid
     }
 
-    fillCellsByXY(colour, fromPos, toPos = null) {
+    fillCellsByXY(colour, fromPos, toPos = null, placementType = Grid.placementType().FILL) {
         if( !(fromPos instanceof Position) || (!(toPos instanceof Position) && toPos !== null) ) {
             throw Error("Position Class not passed as parameter")
         }
@@ -39,6 +39,13 @@ class Grid {
 
     getContainer() {
         return this._grid
+    }
+
+    static placementType() {
+        return {
+            FILL: "FILL",
+            FLOOD: "FLOOD"
+        }
     }
 }
 

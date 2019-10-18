@@ -38,7 +38,7 @@ class GridContainer {
 
     displayXAxis() {
         let xConsoleLog = "##" + PADDING_SPACING
-        for(let x = 0; x <= this.getMaxPosition().getX(); x++) {
+        for(let x = 1; x < this.getMaxPosition().getX(); x++) {
             xConsoleLog += `${x}`.padStart(2, '0') + PADDING_SPACING
         }
         console.log(xConsoleLog)
@@ -46,11 +46,11 @@ class GridContainer {
 
     displayCells() {
         this.displayXAxis()
-        for(let y = 0; y <= this.getMaxPosition().getY(); y++) {
+        for(let y = 1; y < this.getMaxPosition().getY(); y++) {
             let consoleLogArr = []
             consoleLogArr.push('\x1b[0m')
             consoleLogArr.push(`${y}`.padStart(2, '0') + PADDING_SPACING)
-            for(let x = 0; x <= this.getMaxPosition().getX(); x++) {
+            for(let x = 1; x < this.getMaxPosition().getX(); x++) {
                 if(this._gridArray[x][y] instanceof Cell) {
                     consoleLogArr.push(this._gridArray[x][y].getCellColour())
                     consoleLogArr.push(UNICODE_SQUARE + PADDING_SPACING_HALF)
@@ -65,7 +65,11 @@ class GridContainer {
 
     add(cell) {
         let pos = cell.getPosition()    
-        this._gridArray[pos.getX()][pos.getY()] = cell
+        if(this._gridArray[pos.getX()][pos.getY()] === null) {
+            this._gridArray[pos.getX()][pos.getY()] = cell
+        } else {
+            this._gridArray[pos.getX()][pos.getY()].setColour(cell.getColour())
+        }
     }
 
     yield() {
