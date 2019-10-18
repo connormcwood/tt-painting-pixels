@@ -28,7 +28,7 @@ module.exports.handler = () => {
     console.log("EXAMPLE 3 -- END")
 
     // EXAMPLE 4 
-    grid.fillCellsByXY(redColour, new Position(6, 3), new Position(6, 3), true)
+    grid.fillCellsByXY(redColour, new Position(6, 3), new Position(6, 3), Grid.placementType().FLOOD)
     grid.displayCells()
     console.log("EXAMPLE 4 -- END")
 }
