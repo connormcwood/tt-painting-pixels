@@ -10,27 +10,31 @@ module.exports.handler = () => {
 
     let grid = new Grid()
     // Example 1
-    grid.fillCellsByXY(yellowColour, new Position(8,2))
-    grid.fillCellsByXY(blueColour, new Position(8,4))
-    grid.fillCellsByXY(blueColour, new Position(9,5))
+    grid.fillCellsByPos(yellowColour, new Position(8,2))
+    grid.fillCellsByPos(blueColour, new Position(8,4))
+    grid.fillCellsByPos(blueColour, new Position(9,5))
     grid.displayCells()
     console.log("EXAMPLE 1 -- END")
 
     // EXAMPLE 2
-    grid.fillCellsByXY(blueColour, new Position(2,3), new Position(7,3))
-    grid.fillCellsByXY(blueColour, new Position(5,4), new Position(6,4))
+    grid.fillCellsByPos(blueColour, new Position(2,3), new Position(7,3))
+    grid.fillCellsByPos(blueColour, new Position(5,4), new Position(6,4))
     grid.displayCells()
     console.log("EXAMPLE 2 -- END")
 
     // EXAMPLE 3
-    grid.fillCellsByXY(greenColour, new Position(3, 2), new Position(3, 6))
+    grid.fillCellsByPos(greenColour, new Position(3, 2), new Position(3, 6))
     grid.displayCells()
     console.log("EXAMPLE 3 -- END")
 
     // EXAMPLE 4 
-    grid.fillCellsByXY(redColour, new Position(6, 3), new Position(6, 3), Grid.placementType().FLOOD)
+    grid.fillCellsByPos(redColour, new Position(6, 3), new Position(6, 3), Grid.placementType().FLOOD)
     grid.displayCells()
     console.log("EXAMPLE 4 -- END")
+
+    grid.fillCellsByPos(redColour, new Position(6, 3), new Position(6, 3), Grid.placementType().FLOOD)
+    grid.displayCells()
+    console.log("EXAMPLE 5 - NEW (Ensured Callstack wasnt being hit) -- END")
 }
 
 this.handler()

@@ -10,7 +10,7 @@ const MAX_GRID_POS = {
 const PADDING_SPACING_HALF = "".padStart(2, " ")
 const PADDING_SPACING = "".padStart(1, " ")
 const UNICODE_SQUARE = "◼"
-const DEFAULT_BLACK_COLOUR = Colour.getAvailableColours()["WHITE"]
+const DEFAULT_WHITE_COLOUR = Colour.getAvailableColours()["WHITE"]
 
 class GridContainer {
 
@@ -48,14 +48,14 @@ class GridContainer {
         this.displayXAxis()
         for(let y = 1; y < this.getMaxPosition().getY(); y++) {
             let consoleLogArr = []
-            consoleLogArr.push('\x1b[0m')
+            consoleLogArr.push(DEFAULT_WHITE_COLOUR)
             consoleLogArr.push(`${y}`.padStart(2, '0') + PADDING_SPACING)
             for(let x = 1; x < this.getMaxPosition().getX(); x++) {
                 if(this._gridArray[x][y] instanceof Cell) {
                     consoleLogArr.push(this._gridArray[x][y].getCellColour())
                     consoleLogArr.push(UNICODE_SQUARE + PADDING_SPACING_HALF)
                 } else {
-                    consoleLogArr.push(DEFAULT_BLACK_COLOUR)
+                    consoleLogArr.push(DEFAULT_WHITE_COLOUR)
                     consoleLogArr.push(UNICODE_SQUARE + PADDING_SPACING_HALF)
                 }
             }
@@ -65,11 +65,14 @@ class GridContainer {
 
     add(cell) {
         let pos = cell.getPosition()    
-        if(this._gridArray[pos.getX()][pos.getY()] === null) {
-            this._gridArray[pos.getX()][pos.getY()] = cell
-        } else {
-            this._gridArray[pos.getX()][pos.getY()].setColour(cell.getColour())
+        this._gridArray[pos.getX()][pos.getY()] = cell
+    }
+
+    get(pos) {
+        if(pos.getX() < 0 || pos.getY() < 0) {
+            return
         }
+        return this._gridArray[pos.getX()][pos.getY()]
     }
 
     yield() {
